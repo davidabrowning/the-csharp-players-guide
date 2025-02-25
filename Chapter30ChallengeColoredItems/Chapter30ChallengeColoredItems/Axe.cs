@@ -8,5 +8,9 @@ namespace Chapter30ChallengeColoredItems
 {
     public class Axe
     {
+        public override string ToString()
+        {
+            return "A good axe";
+        }
     }
 }
