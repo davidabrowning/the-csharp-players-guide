@@ -21,6 +21,11 @@ namespace Chapter08ChallengeTheDefenseOfConsolas
         public void PrintPrompt(string promptText) => Print(promptText, ConsoleColor.Yellow);
         public void PrintSuccess(string successText) => PrintLine(successText, ConsoleColor.Green);
         public void PrintFailure(string failureText) => PrintLine(failureText, ConsoleColor.Red);
-        public void PrintSummary(string summaryText) => PrintLine(summaryText, ConsoleColor.Blue);
+        public void PrintSummary(string summaryText)
+        {
+            Console.Beep(250, 500);
+            PrintLine(summaryText, ConsoleColor.Blue);
+            Console.Beep(220, 500);
+        }
     }
 }
