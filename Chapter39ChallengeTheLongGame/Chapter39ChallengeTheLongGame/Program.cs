@@ -8,7 +8,7 @@
             //testRunner.RunTests();
 
             IslandCompetition islandCompetition = new IslandCompetition();
-            islandCompetition.Start();
+            islandCompetition.Go();
         }
     }
 }
