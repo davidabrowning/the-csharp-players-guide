@@ -4,7 +4,11 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            //TestRunner testRunner = new TestRunner();
+            //testRunner.RunTests();
+
+            IslandCompetition islandCompetition = new IslandCompetition();
+            islandCompetition.Start();
         }
     }
 }
