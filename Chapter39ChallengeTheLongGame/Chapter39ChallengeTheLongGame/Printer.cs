@@ -8,34 +8,29 @@ namespace Chapter39ChallengeTheLongGame
 {
     public class Printer
     {
-        public void Clear()
+        private ConsoleColor defaultConsoleColor;
+        public Printer()
         {
-            Console.Clear();
+            defaultConsoleColor = ConsoleColor.White;
         }
-        public void PrintPrompt(string text)
-        {
-            Console.Write(text);
-        }
-        public void PrintNeutral(string text)
-        {
-            Console.WriteLine(text);
-        }
-        public void PrintInstructions(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(text);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-        public void PrintSuccess(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(text);
-            Console.ForegroundColor = ConsoleColor.Gray;
-        }
+        public void Clear() => Console.Clear();
         public void SetTitle(string text)
         {
             Console.Title = text;
-            Console.Clear();
+            Clear();
         }
+        public void PrintPrompt(string text) => Print(text);
+        public void PrintNeutral(string text) => PrintLine(text);
+        public void PrintInstructions(string text) => PrintLine(text, ConsoleColor.Yellow);
+        public void PrintSuccess(string text) => PrintLine(text, ConsoleColor.Green);
+        private void Print(string text, ConsoleColor consoleColor)
+        {
+            Console.ForegroundColor = consoleColor;
+            Console.Write(text);
+            Console.ForegroundColor = defaultConsoleColor;
+        }
+        private void Print(string text) => Print(text, defaultConsoleColor);
+        private void PrintLine(string text, ConsoleColor consoleColor) => Print($"{text}\n", consoleColor);
+        private void PrintLine(string text) => PrintLine(text, defaultConsoleColor);
     }
 }
