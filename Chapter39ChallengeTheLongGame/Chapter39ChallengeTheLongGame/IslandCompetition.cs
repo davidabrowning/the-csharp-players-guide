@@ -21,21 +21,53 @@ namespace Chapter39ChallengeTheLongGame
         }
         public void Go()
         {
+            ConfigureConsole();
+            ConfigureCompetitor();
+            CarryOutCompetition();
+            SaveAndClose();
+        }
+        private void ConfigureConsole()
+        {
             printer.SetTitle("The Long Game");
-            while(Equals(competitor.Name, "Unknown"))
+        }
+        private void ConfigureCompetitor()
+        {
+            SetCompetitorName();
+            SetCompetitorScore();
+            SetCompetitorConsoleTitle();
+        }
+        private void SetCompetitorName()
+        {
+            while (CompetitorNameIsNotSet())
             {
                 printer.PrintPrompt("Enter your name: ");
                 competitor.Name = userInputRetriever.GetCompetitorName();
             }
+        }
+        private bool CompetitorNameIsNotSet()
+        {
+            return Equals(competitor.Name, "Unknown");
+        }
+        private void SetCompetitorScore()
+        {
             competitor.Score = scribe.GetScore(competitor);
+        }
+        private void SetCompetitorConsoleTitle()
+        {
             printer.SetTitle($"The Long Game: {competitor.Name}");
-            while(!competitor.PressedEnter)
+        }
+        private void CarryOutCompetition()
+        {
+            while (!competitor.PressedEnter)
             {
                 printer.PrintInstructions("Press keys to compete in the traditional IO Island key press competition.");
                 printer.PrintNeutral(competitor.ToString());
                 competitor.LogKeyPress(userInputRetriever.ReadKey());
                 printer.Clear();
             }
+        }
+        private void SaveAndClose()
+        {
             printer.PrintSuccess($"Good job, {competitor.Name}! See you next time.");
             scribe.SaveScore(competitor);
             printer.PrintSuccess($"Saved final score: {competitor.Score}.");
