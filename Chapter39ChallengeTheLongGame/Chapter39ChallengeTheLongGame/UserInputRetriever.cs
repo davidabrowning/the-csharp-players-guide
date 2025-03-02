@@ -8,13 +8,7 @@ namespace Chapter39ChallengeTheLongGame
 {
     public class UserInputRetriever
     {
-        public string GetCompetitorName()
-        {
-            return Console.ReadLine().Trim();
-        }
-        public ConsoleKey ReadKey()
-        {
-            return Console.ReadKey().Key;
-        }
+        public string GetCompetitorName() => Console.ReadLine().Trim();
+        public ConsoleKey ReadKey() => Console.ReadKey().Key;
     }
 }
