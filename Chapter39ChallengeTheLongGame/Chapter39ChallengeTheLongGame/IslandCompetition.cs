@@ -19,7 +19,7 @@ namespace Chapter39ChallengeTheLongGame
             scribe = new Scribe();
             competitor = new Competitor("Unknown");
         }
-        public void Start()
+        public void Go()
         {
             printer.SetTitle("The Long Game");
             while(Equals(competitor.Name, "Unknown"))
