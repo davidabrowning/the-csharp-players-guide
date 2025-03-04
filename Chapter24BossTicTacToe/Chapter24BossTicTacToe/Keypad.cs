@@ -12,7 +12,7 @@ namespace Chapter24BossTicTacToe
         {
             if (int.TryParse(Console.ReadLine(), out int userInput))
                 return userInput;
-            throw new Exception("Non-integer input");
+            throw new Exception("Non-integer input.");
         }
     }
 }

@@ -10,32 +10,33 @@ namespace Chapter24BossTicTacToe
     {
         private GameBoard gameBoard;
         private Player[] players;
-        private Pedestal pedestal;
-        private Keypad keypad;
+        private Pedestal pedestal; // Output to users
+        private Keypad keypad; // Input from users
         public Player CurrentPlayer { get { return players[CurrentTurnNumber % players.Length];  } }
-        public int CurrentTurnNumber { get { return gameBoard.TotalClaimedLocations; } }
+        public int CurrentTurnNumber { get { return gameBoard.GetTotalClaimedLocations(); } }
         public bool IsOver { get { return gameBoard.HasWinner() || gameBoard.HasDraw();  } }
         public Game()
         {
             gameBoard = new GameBoard();
             players = new Player[2];
-            players[0] = new Player(Symbol.X);
-            players[1] = new Player(Symbol.O);
             pedestal = new Pedestal();
             keypad = new Keypad();
+
+            players[0] = new Player(Symbol.X);
+            players[1] = new Player(Symbol.O);
         }
         public void Go()
         {
             while (!IsOver)
                 PlayTurn();
-            PrintResult();
+            PrintGameResult();
         }
         private void PlayTurn()
         {
-            PrintActiveGameStatus();
+            PrintGameStatus();
             GetNextMove();
         }
-        private void PrintActiveGameStatus()
+        private void PrintGameStatus()
         {
             pedestal.Clear();
             pedestal.PrintNeutral($"It is {CurrentPlayer}'s turn.");
@@ -46,8 +47,7 @@ namespace Chapter24BossTicTacToe
             try
             {
                 pedestal.PrintPrompt("What square do you want to play in? ");
-                int location = keypad.GetIntInput();
-                gameBoard.ClaimLocation(CurrentPlayer, location - 1);
+                GetAndClaimLocation();
             }
             catch (Exception e)
             {
@@ -55,7 +55,12 @@ namespace Chapter24BossTicTacToe
                 GetNextMove();
             }
         }
-        private void PrintResult()
+        private void GetAndClaimLocation()
+        {
+            int location = keypad.GetIntInput();
+            gameBoard.ClaimLocation(CurrentPlayer, location - 1);
+        }
+        private void PrintGameResult()
         {
             pedestal.Clear();
             if (gameBoard.HasDraw())
@@ -63,6 +68,7 @@ namespace Chapter24BossTicTacToe
             else
                 pedestal.PrintNeutral($"{gameBoard.GetWinningSymbol().ToString()} wins!");
             pedestal.PrintGameBoard(gameBoard);
+            pedestal.PrintNeutral("Thank you for playing!");
         }
     }
 }

@@ -106,13 +106,13 @@ namespace Chapter24BossTicTacToe
 
             title = "ClaimedLocations is initially 0";
             gameBoard = new GameBoard();
-            TestHelper.AssertEquals(title, 0, gameBoard.TotalClaimedLocations);
+            TestHelper.AssertEquals(title, 0, gameBoard.GetTotalClaimedLocations());
 
             title = "ClaimedLocations is 1 after 1 claimed location";
             gameBoard = new GameBoard();
             playerOne = new Player(Symbol.X);
             gameBoard.ClaimLocation(playerOne, 1);
-            TestHelper.AssertEquals(title, 1, gameBoard.TotalClaimedLocations);
+            TestHelper.AssertEquals(title, 1, gameBoard.GetTotalClaimedLocations());
         }
     }
 }

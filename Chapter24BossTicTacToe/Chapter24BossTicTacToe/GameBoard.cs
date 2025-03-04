@@ -9,7 +9,6 @@ namespace Chapter24BossTicTacToe
     internal class GameBoard
     {
         private Symbol[] locations;
-        public int TotalClaimedLocations { get { return CalculateTotalClaimedLocations();  } }
         public GameBoard()
         {
             locations = new Symbol[9];
@@ -91,7 +90,7 @@ namespace Chapter24BossTicTacToe
         public void ClaimLocation(Player player, int location)
         {
             if (location < 0)
-                throw new Exception("Location number too low");
+                throw new Exception("Location number too low.");
             if (location >= locations.Length)
                 throw new Exception("Location number too high.");
             if (!IsEmpty(location))
@@ -105,7 +104,7 @@ namespace Chapter24BossTicTacToe
                     return false;
             return true;
         }
-        private int CalculateTotalClaimedLocations()
+        public int GetTotalClaimedLocations()
         {
             int totalClaimedLocations = 0;
             foreach (Symbol location in locations)
