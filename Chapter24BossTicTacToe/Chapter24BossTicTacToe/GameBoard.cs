@@ -14,6 +14,14 @@ namespace Chapter24BossTicTacToe
         {
             locations = new Symbol[9];
         }
+        public bool HasWinner()
+        {
+            return HasCompletedRow() || HasCompletedColumn() || HasCompletedDiagonal();
+        }
+        public bool HasDraw()
+        {
+            return IsFull() && !HasWinner();
+        }
         public bool HasCompletedRow()
         {
             for (int row = 0; row < 3; row++)
@@ -31,6 +39,18 @@ namespace Chapter24BossTicTacToe
                     && locations[col + 3] == locations[col + 6])
                     return true;
             return false;
+        }
+        public bool HasCompletedDiagonal()
+        {
+            return HasCompletedTopLeftDiagonal() || HasCompletedTopRightDiagonal();
+        }
+        public bool HasCompletedTopLeftDiagonal()
+        {
+            return !IsEmpty(0) && locations[0] == locations[4] && locations[4] == locations[8];
+        }
+        public bool HasCompletedTopRightDiagonal()
+        {
+            return !IsEmpty(2) && locations[2] == locations[4] && locations[4] == locations[6];
         }
         private bool IsEmpty(int location)
         {

@@ -51,6 +51,30 @@ namespace Chapter24BossTicTacToe
             gameBoard.ClaimLocation(playerOne, 7);
             TestHelper.AssertTrue(title, gameBoard.HasCompletedColumn());
 
+            title = "GameBoard.HasCompletedDiagonal() is true after three plays in top-left diagonal";
+            gameBoard = new GameBoard();
+            playerOne = new Player(Symbol.X);
+            gameBoard.ClaimLocation(playerOne, 0);
+            gameBoard.ClaimLocation(playerOne, 4);
+            gameBoard.ClaimLocation(playerOne, 8);
+            TestHelper.AssertTrue(title, gameBoard.HasCompletedDiagonal());
+
+            title = "GameBoard.HasCompletedDiagonal() is true after three plays in top-right diagonal";
+            gameBoard = new GameBoard();
+            playerOne = new Player(Symbol.X);
+            gameBoard.ClaimLocation(playerOne, 2);
+            gameBoard.ClaimLocation(playerOne, 4);
+            gameBoard.ClaimLocation(playerOne, 6);
+            TestHelper.AssertTrue(title, gameBoard.HasCompletedDiagonal());
+
+            title = "GameBoard.HasWinner() is true if there is a complete diagonal";
+            gameBoard = new GameBoard();
+            playerOne = new Player(Symbol.X);
+            gameBoard.ClaimLocation(playerOne, 2);
+            gameBoard.ClaimLocation(playerOne, 4);
+            gameBoard.ClaimLocation(playerOne, 6);
+            TestHelper.AssertTrue(title, gameBoard.HasWinner());
+
             title = "GameBoard.IsFull() is initially false";
             gameBoard = new GameBoard();
             TestHelper.AssertFalse(title, gameBoard.IsFull());
