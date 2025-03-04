@@ -11,9 +11,11 @@ namespace Chapter24BossTicTacToe
         public void RunTests()
         {
             string title;
+            Game game;
             GameBoard gameBoard;
             Player playerOne;
             Player playerTwo;
+            Player previousPlayer; ;
 
             title = "GameBoard.HasCompletedRow() is initially false";
             gameBoard = new GameBoard();
@@ -66,6 +68,20 @@ namespace Chapter24BossTicTacToe
             for (int location = 0; location < 9; location++)
                 gameBoard.ClaimLocation(playerOne, location);
             TestHelper.AssertTrue(title, gameBoard.IsFull());
+
+            title = "Turn number is initially 0";
+            game = new Game();
+            TestHelper.AssertEquals(title, 0, game.CurrentTurnNumber);
+
+            title = "ClaimedLocations is initially 0";
+            gameBoard = new GameBoard();
+            TestHelper.AssertEquals(title, 0, gameBoard.TotalClaimedLocations);
+
+            title = "ClaimedLocations is 1 after 1 claimed location";
+            gameBoard = new GameBoard();
+            playerOne = new Player(Symbol.X);
+            gameBoard.ClaimLocation(playerOne, 1);
+            TestHelper.AssertEquals(title, 1, gameBoard.TotalClaimedLocations);
         }
     }
 }

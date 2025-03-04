@@ -9,6 +9,7 @@ namespace Chapter24BossTicTacToe
     internal class GameBoard
     {
         private Symbol[] locations;
+        public int TotalClaimedLocations { get { return CalculateTotalClaimedLocations();  } }
         public GameBoard()
         {
             locations = new Symbol[9];
@@ -46,6 +47,14 @@ namespace Chapter24BossTicTacToe
                 if (location == Symbol.Empty)
                     return false;
             return true;
+        }
+        private int CalculateTotalClaimedLocations()
+        {
+            int totalClaimedLocations = 0;
+            foreach (Symbol location in locations)
+                if (location != Symbol.Empty)
+                    totalClaimedLocations++;
+            return totalClaimedLocations;
         }
     }
 }
