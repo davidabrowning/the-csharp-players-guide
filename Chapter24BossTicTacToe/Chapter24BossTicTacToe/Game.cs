@@ -64,7 +64,7 @@ namespace Chapter24BossTicTacToe
         {
             pedestal.Clear();
             if (gameBoard.HasDraw())
-                pedestal.PrintNeutral($"Game ends in a draw");
+                pedestal.PrintNeutral($"Game ends in a draw.");
             else
                 pedestal.PrintNeutral($"{gameBoard.GetWinningSymbol().ToString()} wins!");
             pedestal.PrintGameBoard(gameBoard);
