@@ -38,7 +38,14 @@ namespace Chapter24BossTicTacToe
             playerOne = new Player(Symbol.X);
             playerTwo = new Player(Symbol.O);
             gameBoard.ClaimLocation(playerOne, 3);
-            gameBoard.ClaimLocation(playerTwo, 3);
+            try
+            {
+                gameBoard.ClaimLocation(playerTwo, 3);
+            }
+            catch (Exception e)
+            {
+                // Do nothing in this test. In the game we would display an error.
+            }
             gameBoard.ClaimLocation(playerTwo, 4);
             gameBoard.ClaimLocation(playerTwo, 5);
             TestHelper.AssertFalse(title, gameBoard.HasCompletedRow());

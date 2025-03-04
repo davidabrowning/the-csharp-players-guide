@@ -14,6 +14,18 @@ namespace Chapter24BossTicTacToe
         {
             locations = new Symbol[9];
         }
+        public Symbol GetWinningSymbol()
+        {
+            if (!HasWinner())
+                return Symbol.Empty;
+            if (HasCompletedRow())
+                return RowWinner();
+            if (HasCompletedColumn())
+                return ColumnWinner();
+            if (HasCompletedDiagonal())
+                return DiagonalWinner();
+            return Symbol.Empty;
+        }
         public bool HasWinner()
         {
             return HasCompletedRow() || HasCompletedColumn() || HasCompletedDiagonal();
@@ -24,33 +36,53 @@ namespace Chapter24BossTicTacToe
         }
         public bool HasCompletedRow()
         {
+            return RowWinner() != Symbol.Empty;
+        }
+        public bool HasCompletedColumn()
+        {
+            return ColumnWinner() != Symbol.Empty;
+        }
+        public bool HasCompletedDiagonal()
+        {
+            return DiagonalWinner() != Symbol.Empty;
+        }
+        public Symbol DiagonalWinner()
+        {
+            if (TopLeftDiagonalWinner() != Symbol.Empty)
+                return TopLeftDiagonalWinner();
+            if (TopRightDiagonalWinner() != Symbol.Empty)
+                return TopRightDiagonalWinner();
+            return Symbol.Empty;
+        }
+        public Symbol RowWinner()
+        {
             for (int row = 0; row < 3; row++)
                 if (!IsEmpty(row * 3)
                     && locations[row * 3] == locations[row * 3 + 1]
                     && locations[row * 3 + 1] == locations[row * 3 + 2])
-                    return true;
-            return false;
+                    return SymbolAt(row * 3);
+            return Symbol.Empty;
         }
-        public bool HasCompletedColumn()
+        public Symbol ColumnWinner()
         {
             for (int col = 0; col < 3; col++)
                 if (!IsEmpty(col)
                     && locations[col] == locations[col + 3]
                     && locations[col + 3] == locations[col + 6])
-                    return true;
-            return false;
+                    return SymbolAt(col);
+            return Symbol.Empty;
         }
-        public bool HasCompletedDiagonal()
+        public Symbol TopLeftDiagonalWinner()
         {
-            return HasCompletedTopLeftDiagonal() || HasCompletedTopRightDiagonal();
+            if (!IsEmpty(0) && locations[0] == locations[4] && locations[4] == locations[8])
+                return SymbolAt(0);
+            return Symbol.Empty;
         }
-        public bool HasCompletedTopLeftDiagonal()
+        public Symbol TopRightDiagonalWinner()
         {
-            return !IsEmpty(0) && locations[0] == locations[4] && locations[4] == locations[8];
-        }
-        public bool HasCompletedTopRightDiagonal()
-        {
-            return !IsEmpty(2) && locations[2] == locations[4] && locations[4] == locations[6];
+            if (!IsEmpty(2) && locations[2] == locations[4] && locations[4] == locations[6])
+                return SymbolAt(2);
+            return Symbol.Empty;
         }
         private bool IsEmpty(int location)
         {
@@ -58,8 +90,13 @@ namespace Chapter24BossTicTacToe
         }
         public void ClaimLocation(Player player, int location)
         {
-            if (IsEmpty(location))
-                locations[location] = player.PlayerSymbol;
+            if (location < 0)
+                throw new Exception("Location number too low");
+            if (location >= locations.Length)
+                throw new Exception("Location number too high.");
+            if (!IsEmpty(location))
+                throw new Exception("Location number already claimed.");
+            locations[location] = player.PlayerSymbol;
         }
         public bool IsFull()
         {

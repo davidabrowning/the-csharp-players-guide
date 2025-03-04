@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             Game game = new Game();
-            game.Go();
+            //game.Go();
 
             TestRunner testRunner = new TestRunner();
             testRunner.RunTests();

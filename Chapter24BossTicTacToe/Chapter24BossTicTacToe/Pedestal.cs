@@ -8,7 +8,15 @@ namespace Chapter24BossTicTacToe
 {
     internal class Pedestal
     {
+        public void Clear()
+        {
+            Console.Clear();
+        }
         public void PrintNeutral(string text)
+        {
+            Console.WriteLine(text);
+        }
+        public void PrintWarning(string text)
         {
             Console.WriteLine(text);
         }
