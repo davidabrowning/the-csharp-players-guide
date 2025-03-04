@@ -4,6 +4,9 @@
     {
         static void Main(string[] args)
         {
+            Game game = new Game();
+            game.Go();
+
             TestRunner testRunner = new TestRunner();
             testRunner.RunTests();
         }

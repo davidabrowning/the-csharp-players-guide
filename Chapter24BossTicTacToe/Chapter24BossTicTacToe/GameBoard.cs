@@ -76,5 +76,9 @@ namespace Chapter24BossTicTacToe
                     totalClaimedLocations++;
             return totalClaimedLocations;
         }
+        public Symbol SymbolAt(int location)
+        {
+            return locations[location];
+        }
     }
 }

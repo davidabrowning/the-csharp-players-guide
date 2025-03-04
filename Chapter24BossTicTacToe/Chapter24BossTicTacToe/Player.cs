@@ -13,5 +13,9 @@ namespace Chapter24BossTicTacToe
         {
             PlayerSymbol = symbol;
         }
+        public override string ToString()
+        {
+            return PlayerSymbol.ToString();
+        }
     }
 }
