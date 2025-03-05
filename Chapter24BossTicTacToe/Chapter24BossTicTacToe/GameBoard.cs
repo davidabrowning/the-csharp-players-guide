@@ -69,22 +69,21 @@ namespace Chapter24BossTicTacToe
         }
         private Symbol TopLeftDiagonalWinner()
         {
-            if (!IsEmpty(Location.Center) 
+            if (!IsEmpty((int)Location.Center) 
                 && locations[(int)Location.TopLeft] == locations[(int)Location.Center] 
                 && locations[(int)Location.Center] == locations[(int)Location.BottomRight])
-                return SymbolAt(0);
+                return SymbolAt((int)Location.Center);
             return Symbol.Empty;
         }
         private Symbol TopRightDiagonalWinner()
         {
-            if (!IsEmpty(Location.Center) 
+            if (!IsEmpty((int)Location.Center) 
                 && locations[(int)Location.TopRight] == locations[(int)Location.Center] 
-                && locations[(int)Location.Center] == locations[(int)Location.BottomRight])
-                return SymbolAt(2);
+                && locations[(int)Location.Center] == locations[(int)Location.BottomLeft])
+                return SymbolAt((int)Location.Center);
             return Symbol.Empty;
         }
         private bool IsEmpty(int location) => locations[location] == Symbol.Empty;
-        private bool IsEmpty(Location location) => IsEmpty((int)location);
         private int UnclaimedLocationCount() => locations.Where(location => location == Symbol.Empty).Count();
         private int ClaimedLocationCount() => locations.Where(location => location != Symbol.Empty).Count();
     }
