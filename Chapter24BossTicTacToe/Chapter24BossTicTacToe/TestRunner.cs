@@ -72,25 +72,25 @@ namespace Chapter24BossTicTacToe
             gameBoard.ClaimLocation(playerOne, 2);
             gameBoard.ClaimLocation(playerOne, 4);
             gameBoard.ClaimLocation(playerOne, 6);
-            TestHelper.AssertTrue(title, gameBoard.HasWinner());
+            TestHelper.AssertTrue(title, gameBoard.HasWinner);
 
             title = "GameBoard.IsFull() is initially false";
             gameBoard = new GameBoard();
-            TestHelper.AssertFalse(title, gameBoard.IsFull());
+            TestHelper.AssertFalse(title, gameBoard.IsFull);
 
             title = "GameBoard.IsFull() is false after some plays";
             gameBoard = new GameBoard();
             playerOne = new Player(Symbol.X);
             for (int location = 0; location < 7; location++)
                 gameBoard.ClaimLocation(playerOne, location);
-            TestHelper.AssertFalse(title, gameBoard.IsFull());
+            TestHelper.AssertFalse(title, gameBoard.IsFull);
 
             title = "GameBoard.IsFull() is true after 9 plays";
             gameBoard = new GameBoard();
             playerOne = new Player(Symbol.X);
             for (int location = 0; location < 9; location++)
                 gameBoard.ClaimLocation(playerOne, location);
-            TestHelper.AssertTrue(title, gameBoard.IsFull());
+            TestHelper.AssertTrue(title, gameBoard.IsFull);
 
             title = "Turn number is initially 0";
             game = new Game();
@@ -98,13 +98,13 @@ namespace Chapter24BossTicTacToe
 
             title = "ClaimedLocations is initially 0";
             gameBoard = new GameBoard();
-            TestHelper.AssertEquals(title, 0, gameBoard.GetTotalClaimedLocations());
+            TestHelper.AssertEquals(title, 0, gameBoard.ClaimedLocationCount());
 
             title = "ClaimedLocations is 1 after 1 claimed location";
             gameBoard = new GameBoard();
             playerOne = new Player(Symbol.X);
             gameBoard.ClaimLocation(playerOne, 1);
-            TestHelper.AssertEquals(title, 1, gameBoard.GetTotalClaimedLocations());
+            TestHelper.AssertEquals(title, 1, gameBoard.ClaimedLocationCount());
         }
     }
 }

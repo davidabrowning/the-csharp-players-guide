@@ -13,8 +13,8 @@ namespace Chapter24BossTicTacToe
         private Pedestal pedestal; // Output to users
         private Keypad keypad; // Input from users
         public Player CurrentPlayer { get { return players[CurrentTurnNumber % players.Length];  } }
-        public int CurrentTurnNumber { get { return gameBoard.GetTotalClaimedLocations(); } }
-        public bool IsOver { get { return gameBoard.HasWinner() || gameBoard.HasDraw();  } }
+        public int CurrentTurnNumber { get { return gameBoard.ClaimedLocationCount(); } }
+        public bool IsOver { get { return gameBoard.HasWinner || gameBoard.HasDraw;  } }
         public Game()
         {
             gameBoard = new GameBoard();
@@ -63,7 +63,7 @@ namespace Chapter24BossTicTacToe
         private void PrintGameResult()
         {
             pedestal.Clear();
-            if (gameBoard.HasDraw())
+            if (gameBoard.HasDraw)
                 pedestal.PrintNeutral($"Game ends in a draw.");
             else
                 pedestal.PrintNeutral($"{gameBoard.GetWinningSymbol().ToString()} wins!");
