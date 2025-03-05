@@ -9,14 +9,15 @@ namespace Chapter24BossTicTacToe
     internal class GameBoard
     {
         private Symbol[] locations;
+        public bool HasWinner { get { return HasCompletedRow() || HasCompletedColumn() || HasCompletedDiagonal(); } }
+        public bool HasDraw { get { return IsFull && !HasWinner; } }
+        public bool IsFull { get { return UnclaimedLocationCount() == 0; } }
         public GameBoard()
         {
             locations = new Symbol[9];
         }
         public Symbol GetWinningSymbol()
         {
-            if (!HasWinner())
-                return Symbol.Empty;
             if (HasCompletedRow())
                 return RowWinner();
             if (HasCompletedColumn())
@@ -24,14 +25,6 @@ namespace Chapter24BossTicTacToe
             if (HasCompletedDiagonal())
                 return DiagonalWinner();
             return Symbol.Empty;
-        }
-        public bool HasWinner()
-        {
-            return HasCompletedRow() || HasCompletedColumn() || HasCompletedDiagonal();
-        }
-        public bool HasDraw()
-        {
-            return IsFull() && !HasWinner();
         }
         public bool HasCompletedRow()
         {
@@ -97,20 +90,13 @@ namespace Chapter24BossTicTacToe
                 throw new Exception("Location number already claimed.");
             locations[location] = player.PlayerSymbol;
         }
-        public bool IsFull()
+        public int UnclaimedLocationCount()
         {
-            foreach (Symbol location in locations)
-                if (location == Symbol.Empty)
-                    return false;
-            return true;
+            return locations.Where(location => location == Symbol.Empty).Count();
         }
-        public int GetTotalClaimedLocations()
+        public int ClaimedLocationCount()
         {
-            int totalClaimedLocations = 0;
-            foreach (Symbol location in locations)
-                if (location != Symbol.Empty)
-                    totalClaimedLocations++;
-            return totalClaimedLocations;
+            return locations.Where(location => location != Symbol.Empty).Count();
         }
         public Symbol SymbolAt(int location)
         {
