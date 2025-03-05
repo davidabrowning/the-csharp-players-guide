@@ -37,7 +37,7 @@ namespace Chapter24BossTicTacToe
                     if (symbol == Symbol.Empty)
                         PrintGameBoardComponent($" {row * 3 + col + 1} ");
                     else
-                        PrintGamePiece($" {symbol.ToString()} ");
+                        PrintGamePiece($" {symbol} ");
                 }
                 PrintLine();
             }

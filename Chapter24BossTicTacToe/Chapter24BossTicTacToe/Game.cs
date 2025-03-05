@@ -8,10 +8,10 @@ namespace Chapter24BossTicTacToe
 {
     internal class Game
     {
-        private GameBoard gameBoard;
-        private Player[] players;
-        private Pedestal pedestal; // Output to users
-        private Keypad keypad; // Input from users
+        private readonly GameBoard gameBoard;
+        private readonly Player[] players;
+        private readonly Pedestal pedestal; // Output to users
+        private readonly Keypad keypad; // Input from users
         public Player CurrentPlayer { get { return players[CurrentTurnNumber % players.Length];  } }
         public int CurrentTurnNumber { get { return gameBoard.LocationsClaimed; } }
         public bool IsOver { get { return gameBoard.HasWinner || gameBoard.HasDraw;  } }
@@ -66,7 +66,7 @@ namespace Chapter24BossTicTacToe
             if (gameBoard.HasDraw)
                 pedestal.PrintNeutral($"Game ends in a draw.");
             else
-                pedestal.PrintNeutral($"{gameBoard.GetWinningSymbol().ToString()} wins!");
+                pedestal.PrintNeutral($"{gameBoard.GetWinningSymbol()} wins!");
             pedestal.PrintGameBoard(gameBoard);
             pedestal.PrintNeutral("Thank you for playing!");
         }
