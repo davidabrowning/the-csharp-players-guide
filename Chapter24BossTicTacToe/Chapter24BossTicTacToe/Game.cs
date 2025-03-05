@@ -13,7 +13,7 @@ namespace Chapter24BossTicTacToe
         private Pedestal pedestal; // Output to users
         private Keypad keypad; // Input from users
         public Player CurrentPlayer { get { return players[CurrentTurnNumber % players.Length];  } }
-        public int CurrentTurnNumber { get { return gameBoard.ClaimedLocationCount(); } }
+        public int CurrentTurnNumber { get { return gameBoard.LocationsClaimed; } }
         public bool IsOver { get { return gameBoard.HasWinner || gameBoard.HasDraw;  } }
         public Game()
         {
