@@ -26,19 +26,19 @@ namespace Chapter24BossTicTacToe
                 return DiagonalWinner();
             return Symbol.Empty;
         }
-        public bool HasCompletedRow()
+        private bool HasCompletedRow()
         {
             return RowWinner() != Symbol.Empty;
         }
-        public bool HasCompletedColumn()
+        private bool HasCompletedColumn()
         {
             return ColumnWinner() != Symbol.Empty;
         }
-        public bool HasCompletedDiagonal()
+        private bool HasCompletedDiagonal()
         {
             return DiagonalWinner() != Symbol.Empty;
         }
-        public Symbol DiagonalWinner()
+        private Symbol DiagonalWinner()
         {
             if (TopLeftDiagonalWinner() != Symbol.Empty)
                 return TopLeftDiagonalWinner();
@@ -46,7 +46,7 @@ namespace Chapter24BossTicTacToe
                 return TopRightDiagonalWinner();
             return Symbol.Empty;
         }
-        public Symbol RowWinner()
+        private Symbol RowWinner()
         {
             for (int row = 0; row < 3; row++)
                 if (!IsEmpty(row * 3)
@@ -55,7 +55,7 @@ namespace Chapter24BossTicTacToe
                     return SymbolAt(row * 3);
             return Symbol.Empty;
         }
-        public Symbol ColumnWinner()
+        private Symbol ColumnWinner()
         {
             for (int col = 0; col < 3; col++)
                 if (!IsEmpty(col)
@@ -64,13 +64,13 @@ namespace Chapter24BossTicTacToe
                     return SymbolAt(col);
             return Symbol.Empty;
         }
-        public Symbol TopLeftDiagonalWinner()
+        private Symbol TopLeftDiagonalWinner()
         {
             if (!IsEmpty(0) && locations[0] == locations[4] && locations[4] == locations[8])
                 return SymbolAt(0);
             return Symbol.Empty;
         }
-        public Symbol TopRightDiagonalWinner()
+        private Symbol TopRightDiagonalWinner()
         {
             if (!IsEmpty(2) && locations[2] == locations[4] && locations[4] == locations[6])
                 return SymbolAt(2);

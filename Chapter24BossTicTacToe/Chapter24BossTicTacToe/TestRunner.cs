@@ -17,23 +17,23 @@ namespace Chapter24BossTicTacToe
             Player playerTwo;
             Player previousPlayer; ;
 
-            title = "GameBoard.HasCompletedRow() is initially false";
+            title = "GameBoard.HasWinner() is initially false";
             gameBoard = new GameBoard();
-            TestHelper.AssertFalse(title, gameBoard.HasCompletedRow());
+            TestHelper.AssertFalse(title, gameBoard.HasWinner());
 
             title = "Player.Symbol return correct symbol";
             playerOne = new Player(Symbol.X);
             TestHelper.AssertEquals(title, Symbol.X, playerOne.PlayerSymbol);
 
-            title = "GameBoard.HasCompletedRow() is true after three plays in the same row";
+            title = "GameBoard.HasWinner() is true after three plays in the same row";
             gameBoard = new GameBoard();
             playerOne = new Player(Symbol.X);
             gameBoard.ClaimLocation(playerOne, 3);
             gameBoard.ClaimLocation(playerOne, 4);
             gameBoard.ClaimLocation(playerOne, 5);
-            TestHelper.AssertTrue(title, gameBoard.HasCompletedRow());
+            TestHelper.AssertTrue(title, gameBoard.HasWinner());
 
-            title = "GameBoard.HasCompletedRow() is false when reclaimed location";
+            title = "GameBoard.HasWinner() is false when reclaimed location";
             gameBoard = new GameBoard();
             playerOne = new Player(Symbol.X);
             playerTwo = new Player(Symbol.O);
@@ -48,33 +48,25 @@ namespace Chapter24BossTicTacToe
             }
             gameBoard.ClaimLocation(playerTwo, 4);
             gameBoard.ClaimLocation(playerTwo, 5);
-            TestHelper.AssertFalse(title, gameBoard.HasCompletedRow());
+            TestHelper.AssertFalse(title, gameBoard.HasWinner());
 
-            title = "GameBoard.HasCompletedColumn() is true after three plays in same column";
+            title = "GameBoard.HasWinner() is true after three plays in same column";
             gameBoard = new GameBoard();
             playerOne = new Player(Symbol.X);
             gameBoard.ClaimLocation(playerOne, 1);
             gameBoard.ClaimLocation(playerOne, 4);
             gameBoard.ClaimLocation(playerOne, 7);
-            TestHelper.AssertTrue(title, gameBoard.HasCompletedColumn());
+            TestHelper.AssertTrue(title, gameBoard.HasWinner());
 
-            title = "GameBoard.HasCompletedDiagonal() is true after three plays in top-left diagonal";
+            title = "GameBoard.HasWinner() is true after three plays in top-left diagonal";
             gameBoard = new GameBoard();
             playerOne = new Player(Symbol.X);
             gameBoard.ClaimLocation(playerOne, 0);
             gameBoard.ClaimLocation(playerOne, 4);
             gameBoard.ClaimLocation(playerOne, 8);
-            TestHelper.AssertTrue(title, gameBoard.HasCompletedDiagonal());
+            TestHelper.AssertTrue(title, gameBoard.HasWinner());
 
-            title = "GameBoard.HasCompletedDiagonal() is true after three plays in top-right diagonal";
-            gameBoard = new GameBoard();
-            playerOne = new Player(Symbol.X);
-            gameBoard.ClaimLocation(playerOne, 2);
-            gameBoard.ClaimLocation(playerOne, 4);
-            gameBoard.ClaimLocation(playerOne, 6);
-            TestHelper.AssertTrue(title, gameBoard.HasCompletedDiagonal());
-
-            title = "GameBoard.HasWinner() is true if there is a complete diagonal";
+            title = "GameBoard.HasWinner() is true after three plays in top-right diagonal";
             gameBoard = new GameBoard();
             playerOne = new Player(Symbol.X);
             gameBoard.ClaimLocation(playerOne, 2);
