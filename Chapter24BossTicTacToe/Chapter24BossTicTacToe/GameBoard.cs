@@ -26,13 +26,13 @@ namespace Chapter24BossTicTacToe
                 return ColumnWinner();
             if (HasCompletedDiagonal())
                 return DiagonalWinner();
-            return Symbol.Empty;
+            throw new Exception("No winner.");
         }
         public void ClaimLocation(Player player, int location)
         {
-            if (location < 0)
+            if (location < (int)Location.TopLeft)
                 throw new Exception("Location number too low.");
-            if (location >= locations.Length)
+            if (location > (int)Location.BottomRight)
                 throw new Exception("Location number too high.");
             if (!IsEmpty(location))
                 throw new Exception("Location number already claimed.");
@@ -69,17 +69,22 @@ namespace Chapter24BossTicTacToe
         }
         private Symbol TopLeftDiagonalWinner()
         {
-            if (!IsEmpty(0) && locations[0] == locations[4] && locations[4] == locations[8])
+            if (!IsEmpty(Location.Center) 
+                && locations[(int)Location.TopLeft] == locations[(int)Location.Center] 
+                && locations[(int)Location.Center] == locations[(int)Location.BottomRight])
                 return SymbolAt(0);
             return Symbol.Empty;
         }
         private Symbol TopRightDiagonalWinner()
         {
-            if (!IsEmpty(2) && locations[2] == locations[4] && locations[4] == locations[6])
+            if (!IsEmpty(Location.Center) 
+                && locations[(int)Location.TopRight] == locations[(int)Location.Center] 
+                && locations[(int)Location.Center] == locations[(int)Location.BottomRight])
                 return SymbolAt(2);
             return Symbol.Empty;
         }
         private bool IsEmpty(int location) => locations[location] == Symbol.Empty;
+        private bool IsEmpty(Location location) => IsEmpty((int)location);
         private int UnclaimedLocationCount() => locations.Where(location => location == Symbol.Empty).Count();
         private int ClaimedLocationCount() => locations.Where(location => location != Symbol.Empty).Count();
     }
