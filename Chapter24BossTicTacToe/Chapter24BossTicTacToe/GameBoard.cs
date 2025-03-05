@@ -15,8 +15,6 @@ namespace Chapter24BossTicTacToe
         }
         public Symbol GetWinningSymbol()
         {
-            if (!HasWinner())
-                return Symbol.Empty;
             if (HasCompletedRow())
                 return RowWinner();
             if (HasCompletedColumn())
