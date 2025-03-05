@@ -25,10 +25,12 @@ namespace Chapter24BossTicTacToe
         public void PrintGamePiece(string text) => Print(text, ConsoleColor.Cyan);
         public void PrintGameBoard(GameBoard gameBoard)
         {
+            PrintGameBoardComponent("#############\n");
             for (int row = 0; row < 3; row++)
             {
                 if (row > 0)
-                    PrintGameBoardComponent("---+---+---\n");
+                    PrintGameBoardComponent("#---+---+---#\n");
+                PrintGameBoardComponent("#");
                 for (int col = 0; col < 3; col++)
                 {
                     if (col > 0)
@@ -37,10 +39,12 @@ namespace Chapter24BossTicTacToe
                     if (symbol == Symbol.Empty)
                         PrintGameBoardComponent($" {row * 3 + col + 1} ");
                     else
-                        PrintGamePiece($" {symbol.ToString()} ");
+                        PrintGamePiece($" {symbol} ");
                 }
+                PrintGameBoardComponent("#");
                 PrintLine();
             }
+            PrintGameBoardComponent("#############\n");
         }
     }
 }

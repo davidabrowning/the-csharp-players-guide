@@ -15,7 +15,6 @@ namespace Chapter24BossTicTacToe
             GameBoard gameBoard;
             Player playerOne;
             Player playerTwo;
-            Player previousPlayer; ;
 
             title = "GameBoard.HasWinner() is initially false";
             gameBoard = new GameBoard();
@@ -44,7 +43,7 @@ namespace Chapter24BossTicTacToe
             }
             catch (Exception e)
             {
-                // Do nothing in this test. In the game we would display an error.
+                Console.WriteLine(e.Message);
             }
             gameBoard.ClaimLocation(playerTwo, 4);
             gameBoard.ClaimLocation(playerTwo, 5);

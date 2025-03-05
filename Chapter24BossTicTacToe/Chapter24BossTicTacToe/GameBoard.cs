@@ -8,7 +8,7 @@ namespace Chapter24BossTicTacToe
 {
     internal class GameBoard
     {
-        private Symbol[] locations;
+        private readonly Symbol[] locations;
         public bool HasWinner { get { return HasCompletedRow() || HasCompletedColumn() || HasCompletedDiagonal(); } }
         public bool HasDraw { get { return IsFull && !HasWinner; } }
         public bool IsFull { get { return UnclaimedLocationCount() == 0; } }
