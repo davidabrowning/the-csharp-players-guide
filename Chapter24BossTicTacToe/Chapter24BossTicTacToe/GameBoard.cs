@@ -79,10 +79,7 @@ namespace Chapter24BossTicTacToe
                 return SymbolAt(2);
             return Symbol.Empty;
         }
-        private bool IsEmpty(int location)
-        {
-            return locations[location] == Symbol.Empty;
-        }
+        private bool IsEmpty(int location) => locations[location] == Symbol.Empty;
         private int UnclaimedLocationCount() => locations.Where(location => location == Symbol.Empty).Count();
         private int ClaimedLocationCount() => locations.Where(location => location != Symbol.Empty).Count();
     }
